@@ -11,14 +11,13 @@ export const getUser = async (req: Request) => {
     }
 
     const tokenHeader = req.get(tokenHeaderName);
-
     if (!tokenHeader) {
         return null;
     }
 
     try {
         const decodedToken = await getDecodedToken(tokenHeader);
-        return await User.findById((decodedToken as IToken).userId);
+        return await User.findOne({ _id: (decodedToken as IToken).userId });
     } catch (error) {
         return null;
     }

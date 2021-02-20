@@ -1,6 +1,12 @@
+import { Mongoose } from 'mongoose';
 import { IUser } from '../../../interfaces/user';
 
-export const me = async (_: any, args: any, user: { userData: IUser }) => ({
-    ...user.userData._doc,
-    id: user.userData._id
-});
+export const me = async (_: any, args: any, userDoc: { user: IUser }) => {
+    const { user } = userDoc;
+    return {
+        email: user.email,
+        name: user.name,
+        password: '',
+        id: user._id,
+    };
+};
