@@ -23,8 +23,6 @@ export const login = async (_: any, userData: { email: string, password: string 
 
     const token = create(user._id);
 
-    console.log(user);
-
     return {
         user: {
             name: user.name,
