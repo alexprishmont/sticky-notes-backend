@@ -21,20 +21,20 @@ const setUsersData = (
 ): Array<any> => {
   const adjustedBoards: Array<any> = [];
   boards.forEach((board) => {
-    const user = users.filter(user => { return user._id == board.userId; });
-    
+    const user = users.filter((user) => user._id.toString() === board.userId);
+
     adjustedBoards.push({
-        id: board._id,
-        title: board.title,
-        userId: board.userId,
-        user: {
-            _id: user[0]._id,
-            email: user[0].email,
-            name: user[0].name,
-            password: ''
-        },
-        createdAt: board.createdAt,
-        updatedAt: board.updatedAt
+      id: board._id,
+      title: board.title,
+      userId: board.userId,
+      user: {
+        _id: user[0]._id,
+        email: user[0].email,
+        name: user[0].name,
+        password: '',
+      },
+      createdAt: board.createdAt,
+      updatedAt: board.updatedAt,
     });
   });
   return adjustedBoards;
