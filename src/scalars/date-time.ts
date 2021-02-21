@@ -6,26 +6,26 @@ const typeDef = gql`
 `;
 
 const DateTime: GraphQLScalarType = new GraphQLScalarType({
-    name: 'DateTime',
-    description: 'A DateTime representation in ISO format',
-    parseValue (value) {
-        return value;
-    },
-    serialize (value) {
-        return value;
-    },
-    parseLiteral (ast) {
-        if (ast.kind === Kind.INT) {
-            return new Date(ast.value);
-        }
-
-        return null;
+  name: 'DateTime',
+  description: 'A DateTime representation in ISO format',
+  parseValue(value) {
+    return value;
+  },
+  serialize(value) {
+    return value;
+  },
+  parseLiteral(ast) {
+    if (ast.kind === Kind.INT) {
+      return new Date(ast.value);
     }
+
+    return null;
+  },
 });
 
 export default {
-    typeDef,
-    resolvers: {
-        DateTime
-    }
+  typeDef,
+  resolvers: {
+    DateTime,
+  },
 };
