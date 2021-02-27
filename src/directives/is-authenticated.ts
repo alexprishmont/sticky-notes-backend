@@ -6,22 +6,22 @@ const typeDef = gql`
 `;
 
 class IsAuthenticatedDirective extends SchemaDirectiveVisitor {
-    visitFieldDefinition(field: any) {
-        const { resolve = defaultFieldResolver } = field;
+  visitFieldDefinition(field: any) {
+    const { resolve = defaultFieldResolver } = field;
 
-        field.resolve = async (...args: any) => {
-            const context = args[2];
+    field.resolve = async (...args: any) => {
+      const context = args[2];
 
-            if (!context || !context.user) {
-                throw new AuthenticationError('Not allowed');
-            }
+      if (!context || !context.user) {
+        throw new AuthenticationError('Not allowed');
+      }
 
-            return resolve.apply(this, args);
-        }
-    }
+      return resolve.apply(this, args);
+    };
+  }
 }
 
 export default {
-    typeDef,
-    directive: IsAuthenticatedDirective
-}
+  typeDef,
+  directive: IsAuthenticatedDirective,
+};

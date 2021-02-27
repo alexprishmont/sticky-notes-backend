@@ -10,31 +10,31 @@ const globalTypeDefs = gql`
 `;
 
 export const makeExecutableSchemaFromModules = (ctx: { modules: any }) => {
-    const { modules } = ctx;
-    let typeDefs = [
-        globalTypeDefs,
-        ...scalars.typeDefs,
-        ...directives.typeDefs
+  const { modules } = ctx;
+  let typeDefs = [
+    globalTypeDefs,
+    ...scalars.typeDefs,
+    ...directives.typeDefs,
+  ];
+
+  let resolvers = {
+    ...scalars.resolvers,
+  };
+
+  modules.forEach((module: any) => {
+    typeDefs = [
+      ...typeDefs,
+      ...module.typeDefs,
     ];
 
-    let resolvers = {
-        ...scalars.resolvers
-    };
+    resolvers = deepmerge(resolvers, module.resolvers);
+  });
 
-    modules.forEach((module: any) => {
-        typeDefs = [
-            ...typeDefs,
-            ...module.typeDefs
-        ];
-
-        resolvers = deepmerge(resolvers, module.resolvers);
-    });
-
-    return makeExecutableSchema({
-        typeDefs,
-        resolvers,
-        schemaDirectives: {
-            ...directives.schemaDirectives
-        }
-    });
+  return makeExecutableSchema({
+    typeDefs,
+    resolvers,
+    schemaDirectives: {
+      ...directives.schemaDirectives,
+    },
+  });
 };
