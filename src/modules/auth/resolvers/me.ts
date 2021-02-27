@@ -3,10 +3,11 @@ import { IUser } from '../../../interfaces/user';
 
 export const me = async (_: any, args: any, userDoc: { user: IUser }) => {
   const { user } = userDoc;
+
   return {
+    _id: user._id,
     email: user.email,
-    name: user.name,
     password: '',
-    id: user._id,
+    name: user.name,
   };
 };

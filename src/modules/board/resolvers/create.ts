@@ -2,8 +2,9 @@ import { UserInputError } from 'apollo-server-express';
 import { Board } from '../../../models/board';
 import { User } from '../../../models/user';
 import { IBoardInputDTO } from '../../../interfaces/boardinput';
+import { IBoard } from '../../../interfaces/board';
 
-export const createBoard = async (parent: any, boardInput: IBoardInputDTO) => {
+export const createBoard = async (parent: any, boardInput: IBoardInputDTO): Promise<IBoard> => {
   const { title, userId } = boardInput;
 
   const existingBoard = await Board.findOne({ title });
@@ -22,13 +23,7 @@ export const createBoard = async (parent: any, boardInput: IBoardInputDTO) => {
       ...boardInput,
     });
 
-    return {
-      id: board._id,
-      title: board.title,
-      userId: board.userId,
-      createdAt: board.createdAt,
-      updatedAt: board.updatedAt,
-    };
+    return board;
   } catch (error) {
     throw error;
   }

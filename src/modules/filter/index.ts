@@ -1,5 +1,13 @@
-import { resolvers } from './resolvers';
 import { typeDefs } from './schema.gql';
+
+const resolvers = {
+  Query: {
+
+  },
+  Mutation: {
+
+  },
+};
 
 export default {
   typeDefs: [

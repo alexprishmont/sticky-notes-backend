@@ -23,12 +23,10 @@ export const login = async (_: any, userData: { email: string, password: string 
 
   const token = create(user._id);
 
+  user.password = '';
+
   return {
-    user: {
-      name: user.name,
-      id: user._id,
-      email: user.email,
-    },
+    user,
     token,
     tokenExpiration: config.jwt.lifetime,
   };

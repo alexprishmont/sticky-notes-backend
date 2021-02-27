@@ -22,12 +22,9 @@ export const signup = async (_: any, userInput: IUserInputDTO) => {
       password: hashedPassword,
     });
 
-    return {
-      name: user.name,
-      email: user.email,
-      id: user._id,
-      password: null,
-    };
+    user.password = '';
+
+    return user;
   } catch (error) {
     throw error;
   }
