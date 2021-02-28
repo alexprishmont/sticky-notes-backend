@@ -17,7 +17,7 @@ const noteSchema: mongoose.Schema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
-  }
+  },
 }, { timestamps: true });
 
 export const Note = mongoose.model<INote & mongoose.Document>('Note', noteSchema);

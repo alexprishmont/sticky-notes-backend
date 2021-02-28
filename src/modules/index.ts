@@ -11,7 +11,7 @@ const schema = makeExecutableSchemaFromModules({
     board,
     filter,
     user,
-    note
+    note,
   ],
 });
 
