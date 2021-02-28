@@ -1,9 +1,6 @@
-import { IUser } from './user';
+import { IModel } from './model';
+import { IHasUserId} from './hasuser';
 
-export interface IBoard {
-    _id: string;
+export interface IBoard extends IModel, IHasUserId {
     title: string;
-    userId: string;
-    createdAt: string;
-    updatedAt: string;
 }

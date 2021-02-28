@@ -3,6 +3,7 @@ import auth from './auth';
 import board from './board';
 import filter from './filter';
 import user from './user';
+import note from './note';
 
 const schema = makeExecutableSchemaFromModules({
   modules: [
@@ -10,6 +11,7 @@ const schema = makeExecutableSchemaFromModules({
     board,
     filter,
     user,
+    note
   ],
 });
 

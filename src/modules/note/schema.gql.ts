@@ -2,40 +2,45 @@ import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
     extend type Query {
-        boards(
+        notes(
             filter: FiltersExpression         
             page: Int
             limit: Int
-        ): BoardData! @isAuthenticated
+        ): NoteData! @isAuthenticated
     }
 
     extend type Mutation {
-        createBoard(
+        createNote(
             title: String!
+            body: String!
             userId: String!
-        ): Board @isAuthenticated
+            boardId: String!
+        ): Note @isAuthenticated
 
-        updateBoard(
+        updateNote(
             id: ID!
             title: String!
-        ): Board @isAuthenticated
+            body: String!
+        ): Note @isAuthenticated
 
-        deleteBoard(
+        deleteNote(
             id: ID!
-        ): BoardData @isAuthenticated
+        ): NoteData @isAuthenticated
     }
 
-    type BoardData {
-        board: [Board!]
+    type NoteData {
+        note: [Note!]
+        message: String
         currentPage: Int
         totalPages: Int
-        message: String
     }
 
-    type Board {
+    type Note {
         _id: ID!
         title: String!
+        body: String
         user: User
+        board: Board
         createdAt: DateTime
         updatedAt: DateTime
     }
