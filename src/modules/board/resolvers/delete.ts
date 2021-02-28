@@ -5,12 +5,10 @@ export const deleteBoard = async (parent: any, input: IBoardInputDTO): Promise<a
   const { id } = input;
 
   try {
-    const board = await Board.findById(id);
     await Board.deleteOne({ _id: id });
 
     return {
-      message: 'Board deletion operation is successful.',
-      ...board,
+      message: `Board (ID: ${id}) deletion operation is successful.`,
     };
   } catch (error) {
     throw error;
