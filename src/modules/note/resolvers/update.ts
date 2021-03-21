@@ -3,7 +3,7 @@ import { INoteInputDTO } from '../../../interfaces/noteinput';
 import { Note } from '../../../models/note';
 
 export const updateNote = async (parent:any, noteInput: INoteInputDTO): Promise<any> => {
-  const { id, title, body } = noteInput;
+  const { id, title, body, isFeatured } = noteInput;
 
   try {
     await Note.updateOne(
@@ -12,6 +12,7 @@ export const updateNote = async (parent:any, noteInput: INoteInputDTO): Promise<
         $set: {
           title,
           body,
+          isFeatured
         },
       },
     );
