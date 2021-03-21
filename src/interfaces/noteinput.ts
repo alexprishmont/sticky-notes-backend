@@ -4,4 +4,5 @@ export interface INoteInputDTO {
     body: string;
     boardId: string;
     userId: string;
+    isFeatured: boolean;
 }

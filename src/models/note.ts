@@ -18,6 +18,11 @@ const noteSchema: mongoose.Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isFeatured: {
+    type: Boolean,
+    required: false,
+    default: false,
+  }
 }, { timestamps: true });
 
 export const Note = mongoose.model<INote & mongoose.Document>('Note', noteSchema);

@@ -15,12 +15,14 @@ export const typeDefs = gql`
             body: String!
             userId: String!
             boardId: String!
+            isFeatured: Boolean
         ): Note @isAuthenticated
 
         updateNote(
             id: ID!
             title: String!
             body: String!
+            isFeatured: Boolean
         ): Note @isAuthenticated
 
         deleteNote(
@@ -39,6 +41,7 @@ export const typeDefs = gql`
         _id: ID!
         title: String!
         body: String
+        isFeatured: Boolean
         user: User
         board: Board
         createdAt: DateTime
