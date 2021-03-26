@@ -6,5 +6,7 @@ export const typeDefs = gql`
         email: String!
         password: String!
         name: String!
+        createdAt: DateTime
+        updatedAt: DateTime
     }
 `;
